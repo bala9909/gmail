@@ -1,11 +1,25 @@
-.border{
+.border {
     border: 1px solid gray;
     border-radius: 20px;
     padding: 30px;
     width: 60%;
     height: 100%;
 }
-.blue-border{
-    border:2px solid blue;
+
+.blue-border {
+    border: 2px solid blue;
     border-radius: 2px;
+}
+
+.actions--panel {
+    display: flex;
+    flex-direction: column;
+    column-gap: 10px;
+    height: 80px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.actions--panel button {
+    width: 100px;
 }
