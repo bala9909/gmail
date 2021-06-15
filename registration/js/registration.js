@@ -1,3 +1,30 @@
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+if (params && params.id) {
+    getUserFromService(params.id);
+}
+
+function getUserFromService(userID) {
+    let request = new XMLHttpRequest();
+    request.open("GET", "http://localhost:8080/users/" + userID);
+    request.send();
+    request.onload = () => {
+        if (request.status === 200) {
+            console.log(JSON.parse(request.response));
+            addDataToHtmlForm(JSON.parse(request.response))
+        } else {
+            console.log("error");
+        }
+    };
+}
+
+function addDataToHtmlForm(userData) {
+    document.getElementById('fname').value = userData.firstName;
+    document.getElementById('lname').value = userData.lastName;
+    document.getElementById("username").value = userData.userName;
+    document.getElementById("password").value = userData.password;
+}
+
 function registerUser() {
     const response = new XMLHttpRequest();
 
@@ -6,11 +33,11 @@ function registerUser() {
         lastName: document.getElementById('lname').value,
         userName: document.getElementById("username").value,
         password: document.getElementById("password").value,
-       
+
 
     });
 
-    response.open("POST", 'http://localhost:8080/users')
+    response.open("POST", 'http://localhost:8080/users');
     response.setRequestHeader('Content-Type', 'application/json');
 
     response.send(json);
