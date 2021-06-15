@@ -5,3 +5,7 @@
     width: 60%;
     height: 100%;
 }
+.blue-border{
+    border:2px solid blue;
+    border-radius: 2px;
+}
