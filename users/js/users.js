@@ -17,17 +17,33 @@ function addDataToTable(userArray) {
         const tableRow = document.createElement("TR");
         tableElement.appendChild(tableRow);
         let userNameCell = document.createElement("TD");
-        userNameCell.innerText=user.userName;
+        userNameCell.innerText = user.userName;
         let firstNameCell = document.createElement("TD");
-        firstNameCell.innerText=user.firstName;
+        firstNameCell.innerText = user.firstName;
         let lastNameCell = document.createElement("TD");
-        lastNameCell.innerText=user.lastName;
+        lastNameCell.innerText = user.lastName;
         let passwordCell = document.createElement("TD");
-        passwordCell.innerText=user.password;
+        passwordCell.innerText = user.password;
         tableRow.appendChild(userNameCell);
         tableRow.appendChild(firstNameCell);
         tableRow.appendChild(lastNameCell);
         tableRow.appendChild(passwordCell);
     });
+}
+function deleteEmpRecord(id) {
 
+
+    var url = "http://localhost:8080/users";
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("DELETE", url + '/' +id, true);
+    xhr.onload = function () {
+        var users = JSON.parse(xhr.responseText);
+        if (xhr.readyState == 4 && xhr.status == "200") {
+            console.table(users);
+        } else {
+            console.error(users);
+        }
+    }
+    xhr.send(null);
 }
