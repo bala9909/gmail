@@ -1,5 +1,3 @@
-alert("home page 503 error");
-
 let request = new XMLHttpRequest();
 request.open("DELETE", "https://jsonplaceholder.typicode.com/users/1");
 request.send();
